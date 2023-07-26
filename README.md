@@ -1,6 +1,10 @@
-Backend code for the "Mon Vieux Grimoire" app
+# Backend code for the "Mon Vieux Grimoire" app
 
-Technologies used:
+## Memo
+Le repo github etant prive, ajouter manuellement les droits aux personnes ayant besoin
+d'evaluer le projet
+
+### Technologies used:
 
 -Node.js v18.15.0
 -Nodemon v3.0.1

@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 const mongoose = require('mongoose');
+const Book = require('./models/book');
+const bookRoutes = require('./routes/book');
 
 mongoose.connect('mongodb+srv://lucasletirillypetit:w0HTB17mhyWuOhL8@cluster0.xay1mbr.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -17,27 +19,6 @@ app.use((req, res, next) => {
    next();
  });
 
-app.get('/api/books', (req, res, next) => {
-   const book = [
-   {
-      userId : '0000',
-      title : 'Titre exemple',
-      author : 'Auteur exemple',
-      imageUrl : 'https://www.shutterstock.com/image-illustration/book-icon-sign-design-600w-556493968.jpg',
-      year: 1966,
-      genre: 'Thriller',
-      ratings : [
-      {
-      userId : 'Testreader',
-      grade : 5,
-      }
-      ],
-      averageRating : 4
-   }
-   ];
-      
-   res.status(200).json(book);
- });
-
+ app.use('/api/books', bookRoutes);
 
 module.exports = app;
