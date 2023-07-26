@@ -12,7 +12,8 @@ Server related:
 -Express.js v4.18.2
 -Bcrypt v5.1.0
 -Jsonwebtoken v9.0.1
--Multer v1.4.5-lts.1
+-Multer v1.4.5-lts.1 (upload file management)
+-Sharp v0.32.4 (image compression)
 
 Database related:
 -MongoDB Atlas

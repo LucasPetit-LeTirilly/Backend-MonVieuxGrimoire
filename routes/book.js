@@ -1,14 +1,19 @@
 const express = require('express');
+const multer = require('multer');
 
 const router = express.Router();
 const bookCtrl = require('../controllers/book');
 const auth = require('../middleware/auth');
-const multer = require('../middleware/multer-config')
+const imageCompression = require('../middleware/image-compression')
 
-router.post('/', auth, multer, bookCtrl.createBook);
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+
+router.post('/', auth, upload.single("image"), imageCompression , bookCtrl.createBook);
 router.get('/', bookCtrl.getAllBooks);
 router.get('/:id', bookCtrl.getOneBook);
-router.put('/:id', auth, multer, bookCtrl.modifyBook);
+router.put('/:id', auth, bookCtrl.modifyBook);
 router.delete('/:id', auth, bookCtrl.deleteBook);
 
 
