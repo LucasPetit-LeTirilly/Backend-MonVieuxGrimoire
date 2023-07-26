@@ -2,7 +2,7 @@ const Book = require('../models/book');
 const fs = require('fs');
 
 exports.createBook = (req, res, next) => {
-  const bookObject = JSON.parse(req.body.thing);
+  const bookObject = JSON.parse(req.body.book);
   delete bookObject._id;
   delete bookObject._userId;
   const book = new Book({
@@ -12,13 +12,13 @@ exports.createBook = (req, res, next) => {
   });
 
   book.save()
-  .then(() => { res.status(201).json({message: 'Objet enregistré !'})})
+  .then(() => { res.status(201).json({message: 'Livre enregistré !'})})
   .catch(error => { res.status(400).json( { error })})
 };
 
 exports.getAllBooks = (req, res, next) => {
     Book.find()
-      .then(things => res.status(200).json(things))
+      .then(things => res.status(200).json(books))
       .catch(error => res.status(400).json({ error }));
 } 
 
