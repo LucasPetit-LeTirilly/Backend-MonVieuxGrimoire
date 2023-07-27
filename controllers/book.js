@@ -1,6 +1,7 @@
 const e = require('express');
 const Book = require('../models/book');
 const fs = require('fs');
+const { compare } = require('bcrypt');
 
 exports.createBook = (req, res, next) => {
   const bookObject = JSON.parse(req.body.book);
@@ -27,6 +28,16 @@ exports.getOneBook = (req, res, next) => {
   Book.findOne({ _id: req.params.id })
     .then(book => res.status(200).json(book))
     .catch(error => res.status(404).json({ error }));
+}
+
+exports.getBestBooks = (req, res, next) => {
+    Book.find()
+        .then((books) => {
+            books.sort((a,b) => b.averageRating - a.averageRating);
+            const bestBooks = [books[0],books[1],books[2]];
+            res.status(200).json(bestBooks)
+        })
+        .catch(error => res.status(404).json({ error }));
 }
 
 exports.modifyBook = (req, res, next) => {
