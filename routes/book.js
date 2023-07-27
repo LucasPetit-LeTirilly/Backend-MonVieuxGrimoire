@@ -11,10 +11,10 @@ const upload = multer({ storage });
 
 
 router.post('/', auth, upload.single("image"), imageCompression , bookCtrl.createBook);
+router.post('/:id/rating', auth, bookCtrl.addRating);
 router.get('/', bookCtrl.getAllBooks);
 router.get('/:id', bookCtrl.getOneBook);
 router.put('/:id', auth, upload.single("image"), imageCompression, bookCtrl.modifyBook);
-router.post('/:id/rating', bookCtrl.addRating);
 router.delete('/:id', auth, bookCtrl.deleteBook);
 
 

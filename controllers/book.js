@@ -1,3 +1,4 @@
+const e = require('express');
 const Book = require('../models/book');
 const fs = require('fs');
 
@@ -35,7 +36,7 @@ exports.modifyBook = (req, res, next) => {
   } : { ...req.body};
 
   delete bookObject._userId;
-  Book.findOne({_id: req.params.id})
+  Book.findOne({ _id: req.params.id })
       .then((book) => {
           if (book.userId != req.auth.userId) {
               res.status(401).json({ message : 'Not authorized'});
@@ -57,12 +58,39 @@ exports.modifyBook = (req, res, next) => {
 };
 
 exports.addRating = (req, res, next) => {
-    const newRating = req.body.rating;
-    Book.findOne({ _id: req.params.id})
+    Book.findOne({ _id: req.params.id })
         .then(book => {
-
-            book.averageRating = newAverageRating;
-            res.status(200).json({message : 'Note ajoutée !'})
+            const ratingInfos = book.ratings;
+            const usersWhoRated = ratingInfos.map((element) =>{
+                return element.userId
+            });
+            if (book.userId === req.auth.userId){
+                res.status(401).json({ message : 'Not authorized'});
+            }
+            else if (usersWhoRated.includes(req.auth.userId)){
+                res.status(401).json({ message : 'Not authorized'});
+            }
+            else {
+                let ratingToAdd = req.body;
+                ratingToAdd.grade = ratingToAdd.rating;
+                delete ratingToAdd.rating;
+                let ratings = book.ratings;
+                ratings.push(ratingToAdd);
+                const allGrades = ratings.map(element => element.grade);
+                const totalGrades = allGrades.reduce(
+                    (acc, currentValue) => acc + currentValue, 0
+                );
+                const newAverageRating = totalGrades/allGrades.length;
+                Book.updateOne({ _id: req.params.id}, {ratings: ratings, averageRating : newAverageRating})
+                .then(() => {
+                    Book.findOne({ _id: req.params.id })
+                    .then((updatedBook) => res.status(200).json(updatedBook))
+                    .catch(error => res.status(500).json({ error }));
+                })
+                
+                    
+                .catch(error => res.status(401).json({ error }));
+            }
         })
         .catch( error => {
             res.status(500).json({ error });
