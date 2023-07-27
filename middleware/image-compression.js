@@ -10,7 +10,6 @@ function fileNameNormalizer(name){
 
 const imageCompression = async (req, res, next) => {
   if (!req.file){
-    console.log('hello');
     return next();
   }
   fs.access("./images", (error) => {
