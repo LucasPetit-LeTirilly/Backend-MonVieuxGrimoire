@@ -1,8 +1,9 @@
 # Backend code for the "Mon Vieux Grimoire" app
 
 ## Memo
-Le repo github etant prive, ajouter manuellement les droits aux personnes ayant besoin
+-Le repo github etant prive, ajouter manuellement les droits aux personnes ayant besoin
 d'evaluer le projet
+-Implementer Joi (npm joi) comme middleware de validation d'input
 
 ### Technologies used:
 

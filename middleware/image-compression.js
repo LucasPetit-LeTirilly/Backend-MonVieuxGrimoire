@@ -1,6 +1,12 @@
 const sharp = require('sharp');
 const fs = require('fs');
 
+function fileNameNormalizer(name){
+  let normalizedName = name.split(' ').join('_').split('.');
+  const poping = normalizedName.pop();
+  normalizedName = normalizedName.join('.');
+  return normalizedName;
+}
 
 const imageCompression = async (req, res, next) => {
   fs.access("./images", (error) => {
@@ -9,12 +15,13 @@ const imageCompression = async (req, res, next) => {
     }
   });
   const { buffer, originalname } = req.file;
-  const timestamp = Date.now();
-  const ref = `${timestamp}-${originalname}.webp`;
+  const name = fileNameNormalizer(originalname);
+  const ref = name + Date.now();
   await sharp(buffer)
     .webp({ quality: 100 })
-    .toFile("./images/" + ref);
+    .toFile('./images/' + ref + '.webp');
+  req.file.filename = ref + '.webp';
   next();
-} 
+}
 
 module.exports = imageCompression;
