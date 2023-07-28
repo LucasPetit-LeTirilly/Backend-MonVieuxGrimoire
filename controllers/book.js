@@ -1,7 +1,6 @@
-const e = require('express');
 const Book = require('../models/book');
 const fs = require('fs');
-const { compare } = require('bcrypt');
+
 
 exports.createBook = (req, res, next) => {
   const bookObject = JSON.parse(req.body.book);

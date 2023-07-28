@@ -16,6 +16,7 @@ Server related:
 -Jsonwebtoken v9.0.1
 -Multer v1.4.5-lts.1 (upload file management)
 -Sharp v0.32.4 (image compression)
+-Joi v17.9.2 (input validation)
 
 Database related:
 -MongoDB Atlas

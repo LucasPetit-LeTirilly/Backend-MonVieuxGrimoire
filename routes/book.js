@@ -4,7 +4,7 @@ const multer = require('multer');
 const router = express.Router();
 const bookCtrl = require('../controllers/book');
 const auth = require('../middleware/auth');
-const imageCompression = require('../middleware/image-compression')
+const imageCompression = require('../middleware/image-compression');
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
