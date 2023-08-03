@@ -17,6 +17,7 @@ Server related:
 -Multer v1.4.5-lts.1 (upload file management)
 -Sharp v0.32.4 (image compression)
 -Joi v17.9.2 (input validation)
+-Helmet v7 (securing response headers)
 
 Database related:
 -MongoDB Atlas

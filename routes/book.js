@@ -1,14 +1,10 @@
 const express = require('express');
-const multer = require('multer');
 
 const router = express.Router();
 const bookCtrl = require('../controllers/book');
 const auth = require('../middleware/auth');
 const imageUpload = require('../middleware/image-upload');
 const imageCompression = require('../middleware/image-compression');
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
 
 
 router.post('/', auth, imageUpload, imageCompression , bookCtrl.createBook);
