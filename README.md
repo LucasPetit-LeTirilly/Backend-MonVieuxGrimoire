@@ -1,12 +1,6 @@
 # Backend code for the "Mon Vieux Grimoire" app
 
-## Memo
--Le repo github etant prive, ajouter manuellement les droits aux personnes ayant besoin
-d'evaluer le projet
--Ajouter le package helmet pour la securite
-
-
-### Technologies used:
+Technologies used:
 
 Server related:
 -Node.js v18.15.0
