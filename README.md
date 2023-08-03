@@ -4,7 +4,6 @@
 -Le repo github etant prive, ajouter manuellement les droits aux personnes ayant besoin
 d'evaluer le projet
 -Ajouter le package helmet pour la securite
--Mettre multer en middleware
 
 
 ### Technologies used:
