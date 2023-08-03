@@ -3,7 +3,8 @@
 ## Memo
 -Le repo github etant prive, ajouter manuellement les droits aux personnes ayant besoin
 d'evaluer le projet
--Implementer Joi (npm joi) comme middleware de validation d'input
+-Ajouter le package helmet pour la securite
+-Mettre multer en middleware
 
 
 ### Technologies used:

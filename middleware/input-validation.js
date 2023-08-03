@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   const schema = Joi.object({
     email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
@@ -10,12 +10,11 @@ module.exports = (req, res, next) => {
     password: Joi.string()
         .required(),
   })
-  try {
-    const value = schema.validate({ email: req.email, password: req.password});
-    next();
+    try {
+      const value = await schema.validateAsync({ email: req.body.email, password: req.body.password});
+      next();
+    }
+    catch {
+      res.status(400).json({message: "erreur"})
+    }
   }
-  catch (error) {
-    res.status(400).json( { error })
-  }
-
-}
