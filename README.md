@@ -18,3 +18,6 @@ Database related:
 -MongoDB Atlas
 -Mongoose v7.4.1
 -Mongoose-Unique-Validator v4.0.0
+
+Credentials:
+Please contact me here : lucas.letirilly.petit@gmail.com if you wish to access the database credentials.
